@@ -9,15 +9,17 @@ jobs:
   build-book:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: .
+
     permissions:
       contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          path: .
-          
+
       - name: List workspace
         run: ls -R .
 
