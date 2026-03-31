@@ -10,7 +10,12 @@ html:
   use_issues_button: false
   use_edit_page_button: false
   extra_footer: |
-    <p> © 2026 — Especialización en Ciencia de Datos — UNO</p>
+    <p>© 2026 — Especialización en Ciencia de Datos — UNO</p>
+
+repository:
+  url: https://github.com/jonuran/fundamentos-programacion-uno
+  path_to_book: ""
+  branch: main
 
 sphinx:
   config:
