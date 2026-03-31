@@ -1,0 +1,28 @@
+format: jb-book
+root: portada
+
+chapters:
+  - file: capitulo_01
+  - file: capitulo_02
+  - file: capitulo_03
+  - file: capitulo_04
+  - file: capitulo_05
+  - file: capitulo_06
+  - file: capitulo_07
+  - file: capitulo_08
+  - file: capitulo_09
+  - file: capitulo_10
+  - file: capitulo_11
+  - file: capitulo_12
+  - file: capitulo_13
+  - file: capitulo_14
+  - file: capitulo_15
+  - file: capitulo_16
+  - file: capitulo_17
+  - file: capitulo_18
+  - file: capitulo_19
+  - file: capitulo_20
+  - file: capitulo_21
+  - file: capitulo_22
+  - file: capitulo_23
+  - file: capitulo_24

@@ -1,0 +1,17 @@
+title: "Fundamentos de Programación - Python"
+author: "Ing. Jonatan Uran — Universidad Nacional del Oeste (UNO)"
+logo: ""
+
+execute:
+  execute_notebooks: "off"
+
+html:
+  use_repository_button: true
+  use_issues_button: false
+  use_edit_page_button: false
+  extra_footer: |
+    <p>© 2026 — Especialización en Ciencia de Datos — UNO</p>
+
+sphinx:
+  config:
+    html_show_copyright: false
