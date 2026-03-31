@@ -24,8 +24,8 @@ jobs:
 
       - name: Build the book
         run: |
-          jupyter-book build fundamentos-programacion-uno
+          jupyter-book build .
 
       - name: Deploy to GitHub Pages
         run: |
-          ghp-import -n -p -f fundamentos-programacion-uno/_build/html
+          ghp-import -n -p -f _build/html
