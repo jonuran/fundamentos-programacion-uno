@@ -1,0 +1,877 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA) &#8212; Fundamentos de Programación - Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'capitulo_10';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CAPÍTULO 11 — FUNCIONES AVANZADAS (VERSIÓN EXTENDIDA)" href="capitulo_11.html" />
+    <link rel="prev" title="CAPÍTULO 9 — DICCIONARIOS" href="capitulo_09.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Fundamentos de Programación - Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Fundamentos de Programación — UNO
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="capitulo_01.html">CAPÍTULO 1 — INTRODUCCIÓN A PYTHON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_02.html">CAPÍTULO 2 — TIPOS DE DATOS Y VARIABLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_03.html">CAPÍTULO 3 — OPERADORES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_04.html">CAPÍTULO 4 — ESTRUCTURAS CONDICIONALES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_05.html">CAPÍTULO 5 — BUCLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_06.html">CAPÍTULO 6 — CADENAS (STRINGS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_07.html">CAPÍTULO 7 — LISTAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_08.html">CAPÍTULO 8 — TUPLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_09.html">CAPÍTULO 9 — DICCIONARIOS</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_11.html">CAPÍTULO 11 — FUNCIONES AVANZADAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_12.html">CAPÍTULO 12 — ARCHIVOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_13.html">CAPÍTULO 13 — EXCEPCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_14.html">CAPÍTULO 14 — PROGRAMACIÓN ORIENTADA A OBJETOS (POO) — VERSIÓN EXTENDIDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_15.html">CAPÍTULO 15 — MÓDULOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_16.html">CAPÍTULO 16 — DEPURACIÓN (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_17.html">CAPÍTULO 17 — ESTRUCTURAS CLÁSICAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_18.html">CAPÍTULO 18 — ÁRBOLES Y GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_19.html">CAPÍTULO 19 — ALGORITMOS EN GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_20.html">CAPÍTULO 20 — COMPLEJIDAD COMPUTACIONAL (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_21.html">CAPÍTULO 21 — NOTACIÓN BIG O (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_22.html">CAPÍTULO 22 — ANÁLISIS DE ALGORITMOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_23.html">CAPÍTULO 23 — ALGORITMOS CLÁSICOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_24.html">CAPÍTULO 24 — BUENAS PRÁCTICAS Y SIGUIENTES PASOS (VERSIÓN EXTENDIDA)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jonuran/fundamentos-programacion-uno" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/capitulo_10.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-usar-funciones">¿Por qué usar funciones?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-funciones">10.1 Definición de funciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros-y-argumentos">10.2 Parámetros y argumentos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retorno-de-valores">10.3 Retorno de valores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-por-defecto">10.4 Argumentos por defecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-variables-args-kwargs">10.5 Argumentos variables (<code class="docutils literal notranslate"><span class="pre">*args</span></code>, <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#args-argumentos-posicionales-variables"><code class="docutils literal notranslate"><span class="pre">*args</span></code> — argumentos posicionales variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kwargs-argumentos-nombrados-variables"><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> — argumentos nombrados variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-de-variables-scope">10.6 Ámbito de variables (scope)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-ambito">Tipos de ámbito:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-global-no-recomendado-salvo-casos-especiales">Uso de <code class="docutils literal notranslate"><span class="pre">global</span></code> (no recomendado salvo casos especiales)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-nonlocal-en-funciones-anidadas">Uso de <code class="docutils literal notranslate"><span class="pre">nonlocal</span></code> en funciones anidadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-por-referencia">10.7 Paso por referencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-funciones-docstrings">10.8 Documentación de funciones (docstrings)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="capitulo-10-funciones-version-extendida">
+<h1>CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA)<a class="headerlink" href="#capitulo-10-funciones-version-extendida" title="Permalink to this heading">#</a></h1>
+<section id="especializacion-en-ciencia-de-datos-uno">
+<h2>Especialización en Ciencia de Datos — UNO<a class="headerlink" href="#especializacion-en-ciencia-de-datos-uno" title="Permalink to this heading">#</a></h2>
+<section id="docente-ing-jonatan-uran">
+<h3>Docente: Ing. Jonatan Uran<a class="headerlink" href="#docente-ing-jonatan-uran" title="Permalink to this heading">#</a></h3>
+<p>Las funciones son uno de los pilares fundamentales de la programación. Permiten dividir un programa en partes más pequeñas, reutilizables y fáciles de mantener. En Python, las funciones son <strong>ciudadanos de primera clase</strong>, lo que significa que pueden almacenarse en variables, pasarse como argumentos y retornarse desde otras funciones.</p>
+<p>En este capítulo veremos en profundidad:</p>
+<ul class="simple">
+<li><p>10.1 Definición de funciones</p></li>
+<li><p>10.2 Parámetros y argumentos</p></li>
+<li><p>10.3 Retorno de valores</p></li>
+<li><p>10.4 Argumentos por defecto</p></li>
+<li><p>10.5 Argumentos variables (<code class="docutils literal notranslate"><span class="pre">*args</span></code>, <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>)</p></li>
+<li><p>10.6 Ámbito de variables (scope)</p></li>
+<li><p>10.7 Paso por referencia</p></li>
+<li><p>10.8 Documentación de funciones (docstrings)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="por-que-usar-funciones">
+<h2>¿Por qué usar funciones?<a class="headerlink" href="#por-que-usar-funciones" title="Permalink to this heading">#</a></h2>
+<p>Las funciones permiten:</p>
+<ul class="simple">
+<li><p>Reutilizar código sin repetirlo.</p></li>
+<li><p>Organizar mejor los programas.</p></li>
+<li><p>Facilitar pruebas y depuración.</p></li>
+<li><p>Mejorar la legibilidad.</p></li>
+<li><p>Reducir errores.</p></li>
+</ul>
+<p>En ciencia de datos, las funciones son esenciales para:</p>
+<ul class="simple">
+<li><p>Preprocesamiento de datos.</p></li>
+<li><p>Limpieza y transformación.</p></li>
+<li><p>Automatización de tareas repetitivas.</p></li>
+<li><p>Implementación de modelos.</p></li>
+<li><p>Modularización de pipelines.</p></li>
+</ul>
+</section>
+<section id="definicion-de-funciones">
+<h2>10.1 Definición de funciones<a class="headerlink" href="#definicion-de-funciones" title="Permalink to this heading">#</a></h2>
+<p>Una función se define con la palabra clave <code class="docutils literal notranslate"><span class="pre">def</span></code>, seguida del nombre y paréntesis.</p>
+<p>Sintaxis general:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">nombre_funcion</span><span class="p">(</span><span class="n">parámetros</span><span class="p">):</span>
+    <span class="n">instrucciones</span>
+</pre></div>
+</div>
+<p>Ejemplo básico:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">saludar</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hola, bienvenido al curso de Python&quot;</span><span class="p">)</span>
+
+<span class="n">saludar</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una función puede estar vacía usando <code class="docutils literal notranslate"><span class="pre">pass</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">futura_funcion</span><span class="p">():</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parametros-y-argumentos">
+<h2>10.2 Parámetros y argumentos<a class="headerlink" href="#parametros-y-argumentos" title="Permalink to this heading">#</a></h2>
+<p>Los <strong>parámetros</strong> son variables definidas en la función.
+Los <strong>argumentos</strong> son los valores reales que se pasan al llamar la función.</p>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">saludar</span><span class="p">(</span><span class="n">nombre</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">saludar</span><span class="p">(</span><span class="s2">&quot;Jonatan&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Python permite <strong>argumentos posicionales</strong> y <strong>argumentos nombrados</strong>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">presentar</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">edad</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nombre: </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">, Edad: </span><span class="si">{</span><span class="n">edad</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">presentar</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>  <span class="c1"># posicional</span>
+<span class="n">presentar</span><span class="p">(</span><span class="n">edad</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">nombre</span><span class="o">=</span><span class="s2">&quot;Luis&quot;</span><span class="p">)</span>  <span class="c1"># nombrado</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="retorno-de-valores">
+<h2>10.3 Retorno de valores<a class="headerlink" href="#retorno-de-valores" title="Permalink to this heading">#</a></h2>
+<p>Las funciones pueden devolver valores usando <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sumar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">sumar</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">resultado</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una función puede retornar múltiples valores (como tupla implícita):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">operaciones</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
+<span class="n">suma</span><span class="p">,</span> <span class="n">resta</span><span class="p">,</span> <span class="n">producto</span> <span class="o">=</span> <span class="n">operaciones</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">suma</span><span class="p">,</span> <span class="n">resta</span><span class="p">,</span> <span class="n">producto</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si no se usa <code class="docutils literal notranslate"><span class="pre">return</span></code>, la función devuelve <code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ejemplo</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hola&quot;</span><span class="p">)</span>
+
+<span class="n">valor</span> <span class="o">=</span> <span class="n">ejemplo</span><span class="p">()</span>
+<span class="n">valor</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="argumentos-por-defecto">
+<h2>10.4 Argumentos por defecto<a class="headerlink" href="#argumentos-por-defecto" title="Permalink to this heading">#</a></h2>
+<p>Los parámetros pueden tener valores por defecto.</p>
+<p>Esto permite llamar la función sin pasar todos los argumentos.</p>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">saludar</span><span class="p">(</span><span class="n">nombre</span><span class="o">=</span><span class="s2">&quot;invitado&quot;</span><span class="p">,</span> <span class="n">mensaje</span><span class="o">=</span><span class="s2">&quot;Bienvenido&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hola </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">mensaje</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">saludar</span><span class="p">()</span>
+<span class="n">saludar</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">)</span>
+<span class="n">saludar</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;¿Cómo estás?&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>⚠️ <strong>Importante:</strong> Los valores por defecto se evalúan una sola vez.</p>
+<p>Esto puede causar comportamientos inesperados con listas o diccionarios mutables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">(</span><span class="n">elemento</span><span class="p">,</span> <span class="n">lista</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elemento</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lista</span>
+
+<span class="n">agregar</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">agregar</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">agregar</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Solución correcta:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">agregar_correcto</span><span class="p">(</span><span class="n">elemento</span><span class="p">,</span> <span class="n">lista</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">lista</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">lista</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elemento</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lista</span>
+
+<span class="n">agregar_correcto</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">agregar_correcto</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">agregar_correcto</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="argumentos-variables-args-kwargs">
+<h2>10.5 Argumentos variables (<code class="docutils literal notranslate"><span class="pre">*args</span></code>, <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>)<a class="headerlink" href="#argumentos-variables-args-kwargs" title="Permalink to this heading">#</a></h2>
+<section id="args-argumentos-posicionales-variables">
+<h3><code class="docutils literal notranslate"><span class="pre">*args</span></code> — argumentos posicionales variables<a class="headerlink" href="#args-argumentos-posicionales-variables" title="Permalink to this heading">#</a></h3>
+<p>Permite recibir cualquier cantidad de argumentos.</p>
+</section>
+<section id="kwargs-argumentos-nombrados-variables">
+<h3><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> — argumentos nombrados variables<a class="headerlink" href="#kwargs-argumentos-nombrados-variables" title="Permalink to this heading">#</a></h3>
+<p>Permite recibir pares clave-valor arbitrarios.</p>
+<p>Ejemplos:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sumar_todo</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="n">sumar_todo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mostrar_info</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">kwargs</span>
+
+<span class="n">mostrar_info</span><span class="p">(</span><span class="n">nombre</span><span class="o">=</span><span class="s2">&quot;Jon&quot;</span><span class="p">,</span> <span class="n">edad</span><span class="o">=</span><span class="mi">39</span><span class="p">,</span> <span class="n">ciudad</span><span class="o">=</span><span class="s2">&quot;Buenos Aires&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Incluso pueden combinarse:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mezcla</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span>
+
+<span class="n">mezcla</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ambito-de-variables-scope">
+<h2>10.6 Ámbito de variables (scope)<a class="headerlink" href="#ambito-de-variables-scope" title="Permalink to this heading">#</a></h2>
+<p>El <strong>scope</strong> determina dónde es accesible una variable.</p>
+<section id="tipos-de-ambito">
+<h3>Tipos de ámbito:<a class="headerlink" href="#tipos-de-ambito" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Local</strong>: dentro de una función.</p></li>
+<li><p><strong>Global</strong>: fuera de funciones.</p></li>
+<li><p><strong>Nonlocal</strong>: en funciones anidadas.</p></li>
+</ul>
+<p>Ejemplo de variable local vs global:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># global</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">prueba</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># local</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="n">prueba</span><span class="p">(),</span> <span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="uso-de-global-no-recomendado-salvo-casos-especiales">
+<h3>Uso de <code class="docutils literal notranslate"><span class="pre">global</span></code> (no recomendado salvo casos especiales)<a class="headerlink" href="#uso-de-global-no-recomendado-salvo-casos-especiales" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">incrementar</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">contador</span>
+    <span class="n">contador</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">incrementar</span><span class="p">()</span>
+<span class="n">contador</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="uso-de-nonlocal-en-funciones-anidadas">
+<h3>Uso de <code class="docutils literal notranslate"><span class="pre">nonlocal</span></code> en funciones anidadas<a class="headerlink" href="#uso-de-nonlocal-en-funciones-anidadas" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">externa</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">interna</span><span class="p">():</span>
+        <span class="k">nonlocal</span> <span class="n">x</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">interna</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="n">externa</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="paso-por-referencia">
+<h2>10.7 Paso por referencia<a class="headerlink" href="#paso-por-referencia" title="Permalink to this heading">#</a></h2>
+<p>Python usa <strong>paso por asignación</strong>.</p>
+<p>Esto significa:</p>
+<ul class="simple">
+<li><p>Los objetos mutables pueden modificarse dentro de la función.</p></li>
+<li><p>Los objetos inmutables no pueden modificarse.</p></li>
+</ul>
+<p>Ejemplo con lista (mutable):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">agregar</span><span class="p">(</span><span class="n">lista</span><span class="p">):</span>
+    <span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">agregar</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+<span class="n">numeros</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ejemplo con entero (inmutable):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cambiar</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">99</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cambiar</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="documentacion-de-funciones-docstrings">
+<h2>10.8 Documentación de funciones (docstrings)<a class="headerlink" href="#documentacion-de-funciones-docstrings" title="Permalink to this heading">#</a></h2>
+<p>Los <strong>docstrings</strong> permiten documentar funciones de forma estándar.</p>
+<p>Se escriben entre triple comillas justo después de la definición.</p>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sumar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Devuelve la suma de dos números.</span>
+
+<span class="sd">    Parámetros:</span>
+<span class="sd">        a (int/float): primer número</span>
+<span class="sd">        b (int/float): segundo número</span>
+
+<span class="sd">    Retorna:</span>
+<span class="sd">        int/float: resultado de la suma</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="n">help</span><span class="p">(</span><span class="n">sumar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="capitulo_09.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CAPÍTULO 9 — DICCIONARIOS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="capitulo_11.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CAPÍTULO 11 — FUNCIONES AVANZADAS (VERSIÓN EXTENDIDA)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-usar-funciones">¿Por qué usar funciones?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-de-funciones">10.1 Definición de funciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros-y-argumentos">10.2 Parámetros y argumentos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retorno-de-valores">10.3 Retorno de valores</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-por-defecto">10.4 Argumentos por defecto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#argumentos-variables-args-kwargs">10.5 Argumentos variables (<code class="docutils literal notranslate"><span class="pre">*args</span></code>, <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#args-argumentos-posicionales-variables"><code class="docutils literal notranslate"><span class="pre">*args</span></code> — argumentos posicionales variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kwargs-argumentos-nombrados-variables"><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> — argumentos nombrados variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ambito-de-variables-scope">10.6 Ámbito de variables (scope)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-ambito">Tipos de ámbito:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-global-no-recomendado-salvo-casos-especiales">Uso de <code class="docutils literal notranslate"><span class="pre">global</span></code> (no recomendado salvo casos especiales)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-nonlocal-en-funciones-anidadas">Uso de <code class="docutils literal notranslate"><span class="pre">nonlocal</span></code> en funciones anidadas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paso-por-referencia">10.7 Paso por referencia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion-de-funciones-docstrings">10.8 Documentación de funciones (docstrings)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ing. Jonatan Uran — Universidad Nacional del Oeste (UNO)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>© 2026 — Especialización en Ciencia de Datos — UNO</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

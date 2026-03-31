@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>CAPÍTULO 17 — ESTRUCTURAS CLÁSICAS (VERSIÓN EXTENDIDA) &#8212; Fundamentos de Programación - Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'capitulo_17';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CAPÍTULO 18 — ÁRBOLES Y GRAFOS (VERSIÓN EXTENDIDA)" href="capitulo_18.html" />
+    <link rel="prev" title="CAPÍTULO 16 — DEPURACIÓN (VERSIÓN EXTENDIDA)" href="capitulo_16.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Fundamentos de Programación - Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Fundamentos de Programación — UNO
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="capitulo_01.html">CAPÍTULO 1 — INTRODUCCIÓN A PYTHON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_02.html">CAPÍTULO 2 — TIPOS DE DATOS Y VARIABLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_03.html">CAPÍTULO 3 — OPERADORES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_04.html">CAPÍTULO 4 — ESTRUCTURAS CONDICIONALES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_05.html">CAPÍTULO 5 — BUCLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_06.html">CAPÍTULO 6 — CADENAS (STRINGS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_07.html">CAPÍTULO 7 — LISTAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_08.html">CAPÍTULO 8 — TUPLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_09.html">CAPÍTULO 9 — DICCIONARIOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_10.html">CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_11.html">CAPÍTULO 11 — FUNCIONES AVANZADAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_12.html">CAPÍTULO 12 — ARCHIVOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_13.html">CAPÍTULO 13 — EXCEPCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_14.html">CAPÍTULO 14 — PROGRAMACIÓN ORIENTADA A OBJETOS (POO) — VERSIÓN EXTENDIDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_15.html">CAPÍTULO 15 — MÓDULOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_16.html">CAPÍTULO 16 — DEPURACIÓN (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CAPÍTULO 17 — ESTRUCTURAS CLÁSICAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_18.html">CAPÍTULO 18 — ÁRBOLES Y GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_19.html">CAPÍTULO 19 — ALGORITMOS EN GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_20.html">CAPÍTULO 20 — COMPLEJIDAD COMPUTACIONAL (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_21.html">CAPÍTULO 21 — NOTACIÓN BIG O (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_22.html">CAPÍTULO 22 — ANÁLISIS DE ALGORITMOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_23.html">CAPÍTULO 23 — ALGORITMOS CLÁSICOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_24.html">CAPÍTULO 24 — BUENAS PRÁCTICAS Y SIGUIENTES PASOS (VERSIÓN EXTENDIDA)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jonuran/fundamentos-programacion-uno" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/capitulo_17.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>CAPÍTULO 17 — ESTRUCTURAS CLÁSICAS (VERSIÓN EXTENDIDA)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arreglos-listas">17.1 Arreglos (listas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-comunes">Operaciones comunes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pilas-lifo">17.2 Pilas (LIFO)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colas-fifo">17.3 Colas (FIFO)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deque">17.4 Deque</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-hash">17.5 Tabla hash</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Operaciones comunes</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="capitulo-17-estructuras-clasicas-version-extendida">
+<h1>CAPÍTULO 17 — ESTRUCTURAS CLÁSICAS (VERSIÓN EXTENDIDA)<a class="headerlink" href="#capitulo-17-estructuras-clasicas-version-extendida" title="Permalink to this heading">#</a></h1>
+<section id="especializacion-en-ciencia-de-datos-uno">
+<h2>Especialización en Ciencia de Datos — UNO<a class="headerlink" href="#especializacion-en-ciencia-de-datos-uno" title="Permalink to this heading">#</a></h2>
+<section id="docente-ing-jonatan-uran">
+<h3>Docente: Ing. Jonatan Uran<a class="headerlink" href="#docente-ing-jonatan-uran" title="Permalink to this heading">#</a></h3>
+<p>Las estructuras de datos clásicas son fundamentales para resolver problemas de forma eficiente. Permiten organizar la información en memoria de manera óptima según el tipo de operación que necesitemos realizar.</p>
+<p>En este capítulo veremos:</p>
+<ul class="simple">
+<li><p>17.1 Arreglos (listas)</p></li>
+<li><p>17.2 Pilas (LIFO)</p></li>
+<li><p>17.3 Colas (FIFO)</p></li>
+<li><p>17.4 Deque</p></li>
+<li><p>17.5 Tabla hash</p></li>
+</ul>
+<p>Estas estructuras son la base de algoritmos, sistemas operativos, bases de datos, motores de búsqueda y prácticamente cualquier software moderno.</p>
+</section>
+</section>
+<section id="arreglos-listas">
+<h2>17.1 Arreglos (listas)<a class="headerlink" href="#arreglos-listas" title="Permalink to this heading">#</a></h2>
+<p>En Python, los arreglos se implementan como <strong>listas dinámicas</strong>.</p>
+<p>Características:</p>
+<ul class="simple">
+<li><p>Tamaño dinámico (crecen y se reducen automáticamente)</p></li>
+<li><p>Acceso por índice en tiempo O(1)</p></li>
+<li><p>Inserciones y eliminaciones en el medio → O(n)</p></li>
+<li><p>Permiten elementos heterogéneos</p></li>
+</ul>
+<p>Ejemplo básico:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+<span class="n">lista</span><span class="p">,</span> <span class="n">lista</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="operaciones-comunes">
+<h3>Operaciones comunes<a class="headerlink" href="#operaciones-comunes" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">append()</span></code> → agrega al final</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">insert()</span></code> → inserta en posición</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pop()</span></code> → elimina y devuelve un elemento</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">remove()</span></code> → elimina por valor</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sort()</span></code> → ordena</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reverse()</span></code> → invierte</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lista</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">lista</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="n">lista</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las listas son la estructura más flexible de Python, pero no siempre la más eficiente para todas las operaciones.</p>
+</section>
+</section>
+<section id="pilas-lifo">
+<h2>17.2 Pilas (LIFO)<a class="headerlink" href="#pilas-lifo" title="Permalink to this heading">#</a></h2>
+<p>Una <strong>pila</strong> es una estructura donde el último elemento en entrar es el primero en salir.</p>
+<p>LIFO → <em>Last In, First Out</em></p>
+<p>Ejemplos de uso:</p>
+<ul class="simple">
+<li><p>Deshacer acciones (Ctrl+Z)</p></li>
+<li><p>Recursión</p></li>
+<li><p>Evaluación de expresiones</p></li>
+<li><p>Navegación en el historial del navegador</p></li>
+</ul>
+<p>En Python, una pila puede implementarse con una lista usando <code class="docutils literal notranslate"><span class="pre">append()</span></code> y <code class="docutils literal notranslate"><span class="pre">pop()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pila</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pila</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pila</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pila</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">pila</span><span class="p">,</span> <span class="n">pila</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">pila</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Complejidad:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">push</span></code> → O(1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pop</span></code> → O(1)</p></li>
+</ul>
+<p>Las pilas son extremadamente eficientes y simples.</p>
+</section>
+<section id="colas-fifo">
+<h2>17.3 Colas (FIFO)<a class="headerlink" href="#colas-fifo" title="Permalink to this heading">#</a></h2>
+<p>Una <strong>cola</strong> es una estructura donde el primer elemento en entrar es el primero en salir.</p>
+<p>FIFO → <em>First In, First Out</em></p>
+<p>Ejemplos de uso:</p>
+<ul class="simple">
+<li><p>Procesos en un sistema operativo</p></li>
+<li><p>Turnos en un banco</p></li>
+<li><p>Simulaciones</p></li>
+<li><p>Sistemas de mensajería</p></li>
+</ul>
+<p>Implementación básica con listas (no eficiente):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cola</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">cola</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">cola</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">cola</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+<span class="n">cola</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">cola</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Eliminar del inicio de una lista es O(n), por lo que no es eficiente.</p>
+<p>La forma correcta es usar <code class="docutils literal notranslate"><span class="pre">deque</span></code>.</p>
+</section>
+<section id="deque">
+<h2>17.4 Deque<a class="headerlink" href="#deque" title="Permalink to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">deque</span></code> (double-ended queue) es una cola de doble extremo.</p>
+<p>Ventajas:</p>
+<ul class="simple">
+<li><p>Inserciones y eliminaciones en ambos extremos → O(1)</p></li>
+<li><p>Ideal para colas y pilas</p></li>
+<li><p>Muy eficiente</p></li>
+</ul>
+<p>Se importa desde <code class="docutils literal notranslate"><span class="pre">collections</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+
+<span class="n">dq</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">dq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">dq</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">dq</span><span class="o">.</span><span class="n">pop</span><span class="p">(),</span> <span class="n">dq</span><span class="o">.</span><span class="n">popleft</span><span class="p">(),</span> <span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">deque</span></code> es una de las estructuras más eficientes de Python para manejo de secuencias dinámicas.</p>
+</section>
+<section id="tabla-hash">
+<h2>17.5 Tabla hash<a class="headerlink" href="#tabla-hash" title="Permalink to this heading">#</a></h2>
+<p>Una <strong>tabla hash</strong> es una estructura que permite almacenar pares clave-valor con acceso en tiempo O(1) promedio.</p>
+<p>En Python, las tablas hash se implementan como <strong>diccionarios (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)</strong>.</p>
+<p>Características:</p>
+<ul class="simple">
+<li><p>Acceso rápido por clave</p></li>
+<li><p>No tienen orden (hasta Python 3.6, ahora mantienen orden de inserción)</p></li>
+<li><p>Claves deben ser inmutables (strings, números, tuplas)</p></li>
+</ul>
+<p>Ejemplo básico:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tabla</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span> <span class="s2">&quot;nota&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">}</span>
+<span class="n">tabla</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">],</span> <span class="n">tabla</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;nota&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Operaciones comunes<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>insertar → O(1)</p></li>
+<li><p>buscar → O(1)</p></li>
+<li><p>eliminar → O(1)</p></li>
+</ul>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tabla</span><span class="p">[</span><span class="s2">&quot;ciudad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Buenos Aires&quot;</span>
+<span class="k">del</span> <span class="n">tabla</span><span class="p">[</span><span class="s2">&quot;edad&quot;</span><span class="p">]</span>
+<span class="n">tabla</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las tablas hash son fundamentales en:</p>
+<ul class="simple">
+<li><p>bases de datos</p></li>
+<li><p>caches</p></li>
+<li><p>indexación</p></li>
+<li><p>machine learning (mapeos)</p></li>
+<li><p>compiladores</p></li>
+</ul>
+<p>Son una de las estructuras más importantes de la informática moderna.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="capitulo_16.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CAPÍTULO 16 — DEPURACIÓN (VERSIÓN EXTENDIDA)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="capitulo_18.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CAPÍTULO 18 — ÁRBOLES Y GRAFOS (VERSIÓN EXTENDIDA)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arreglos-listas">17.1 Arreglos (listas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operaciones-comunes">Operaciones comunes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pilas-lifo">17.2 Pilas (LIFO)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colas-fifo">17.3 Colas (FIFO)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deque">17.4 Deque</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabla-hash">17.5 Tabla hash</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Operaciones comunes</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ing. Jonatan Uran — Universidad Nacional del Oeste (UNO)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>© 2026 — Especialización en Ciencia de Datos — UNO</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

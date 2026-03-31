@@ -1,0 +1,804 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>CAPÍTULO 9 — DICCIONARIOS &#8212; Fundamentos de Programación - Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'capitulo_09';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA)" href="capitulo_10.html" />
+    <link rel="prev" title="CAPÍTULO 8 — TUPLAS" href="capitulo_08.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Fundamentos de Programación - Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Fundamentos de Programación — UNO
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="capitulo_01.html">CAPÍTULO 1 — INTRODUCCIÓN A PYTHON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_02.html">CAPÍTULO 2 — TIPOS DE DATOS Y VARIABLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_03.html">CAPÍTULO 3 — OPERADORES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_04.html">CAPÍTULO 4 — ESTRUCTURAS CONDICIONALES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_05.html">CAPÍTULO 5 — BUCLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_06.html">CAPÍTULO 6 — CADENAS (STRINGS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_07.html">CAPÍTULO 7 — LISTAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_08.html">CAPÍTULO 8 — TUPLAS</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CAPÍTULO 9 — DICCIONARIOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_10.html">CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_11.html">CAPÍTULO 11 — FUNCIONES AVANZADAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_12.html">CAPÍTULO 12 — ARCHIVOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_13.html">CAPÍTULO 13 — EXCEPCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_14.html">CAPÍTULO 14 — PROGRAMACIÓN ORIENTADA A OBJETOS (POO) — VERSIÓN EXTENDIDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_15.html">CAPÍTULO 15 — MÓDULOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_16.html">CAPÍTULO 16 — DEPURACIÓN (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_17.html">CAPÍTULO 17 — ESTRUCTURAS CLÁSICAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_18.html">CAPÍTULO 18 — ÁRBOLES Y GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_19.html">CAPÍTULO 19 — ALGORITMOS EN GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_20.html">CAPÍTULO 20 — COMPLEJIDAD COMPUTACIONAL (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_21.html">CAPÍTULO 21 — NOTACIÓN BIG O (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_22.html">CAPÍTULO 22 — ANÁLISIS DE ALGORITMOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_23.html">CAPÍTULO 23 — ALGORITMOS CLÁSICOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_24.html">CAPÍTULO 24 — BUENAS PRÁCTICAS Y SIGUIENTES PASOS (VERSIÓN EXTENDIDA)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jonuran/fundamentos-programacion-uno" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/capitulo_09.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>CAPÍTULO 9 — DICCIONARIOS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-diccionario">9.1 ¿Qué es un diccionario?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-valores">9.2 Acceso a valores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-seguro-con-get">Acceso seguro con <code class="docutils literal notranslate"><span class="pre">get()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-y-modificar-elementos">9.3 Agregar y modificar elementos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-clavevalor">Agregar clave–valor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-clave-existente">Modificar clave existente</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminar-elementos">9.4 Eliminar elementos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#del-dic-clave"><code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">dic[clave]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pop-clave"><code class="docutils literal notranslate"><span class="pre">pop(clave)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clear"><code class="docutils literal notranslate"><span class="pre">clear()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-diccionarios">9.5 Recorrer diccionarios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-claves-por-defecto">Recorrer claves (por defecto)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-valores">Recorrer valores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-claves-y-valores">Recorrer claves y valores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-utiles-de-diccionarios">9.6 Métodos útiles de diccionarios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keys"><code class="docutils literal notranslate"><span class="pre">keys()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values"><code class="docutils literal notranslate"><span class="pre">values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#items"><code class="docutils literal notranslate"><span class="pre">items()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios-anidados">9.7 Diccionarios anidados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-practico-en-ciencia-de-datos">9.8 Uso práctico en ciencia de datos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="capitulo-9-diccionarios">
+<h1>CAPÍTULO 9 — DICCIONARIOS<a class="headerlink" href="#capitulo-9-diccionarios" title="Permalink to this heading">#</a></h1>
+<section id="especializacion-en-ciencia-de-datos-uno">
+<h2>Especialización en Ciencia de Datos — UNO<a class="headerlink" href="#especializacion-en-ciencia-de-datos-uno" title="Permalink to this heading">#</a></h2>
+<section id="docente-ing-jonatan-uran">
+<h3>Docente: Ing. Jonatan Uran<a class="headerlink" href="#docente-ing-jonatan-uran" title="Permalink to this heading">#</a></h3>
+<p>Los diccionarios son una de las estructuras de datos más poderosas y utilizadas en Python. Permiten almacenar información en forma de pares <strong>clave–valor</strong>, lo que los hace ideales para representar datos estructurados, registros, configuraciones y objetos.</p>
+<p>En este capítulo veremos:</p>
+<ul class="simple">
+<li><p>Qué es un diccionario</p></li>
+<li><p>Acceso a valores</p></li>
+<li><p>Agregar y modificar elementos</p></li>
+<li><p>Eliminar elementos</p></li>
+<li><p>Recorrer diccionarios</p></li>
+<li><p>Métodos fundamentales</p></li>
+<li><p>Diccionarios anidados</p></li>
+<li><p>Uso práctico en ciencia de datos</p></li>
+</ul>
+</section>
+</section>
+<section id="que-es-un-diccionario">
+<h2>9.1 ¿Qué es un diccionario?<a class="headerlink" href="#que-es-un-diccionario" title="Permalink to this heading">#</a></h2>
+<p>Un diccionario es una colección <strong>no ordenada</strong>, <strong>mutable</strong> y <strong>indexada por claves</strong>.</p>
+<p>Se define usando llaves <code class="docutils literal notranslate"><span class="pre">{}</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;clave&quot;</span><span class="p">:</span> <span class="s2">&quot;valor&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Características principales:</p>
+<ul class="simple">
+<li><p>Las claves deben ser únicas</p></li>
+<li><p>Las claves deben ser inmutables (str, int, float, tuplas)</p></li>
+<li><p>Los valores pueden ser de cualquier tipo</p></li>
+<li><p>Permiten acceso rápido por clave</p></li>
+</ul>
+<p>Ejemplo básico:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persona</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Jon&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">39</span><span class="p">,</span> <span class="s2">&quot;pais&quot;</span><span class="p">:</span> <span class="s2">&quot;Argentina&quot;</span><span class="p">}</span>
+<span class="n">persona</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="acceso-a-valores">
+<h2>9.2 Acceso a valores<a class="headerlink" href="#acceso-a-valores" title="Permalink to this heading">#</a></h2>
+<p>Para acceder a un valor se usa su clave entre corchetes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;clave&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persona</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">],</span> <span class="n">persona</span><span class="p">[</span><span class="s2">&quot;edad&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="acceso-seguro-con-get">
+<h3>Acceso seguro con <code class="docutils literal notranslate"><span class="pre">get()</span></code><a class="headerlink" href="#acceso-seguro-con-get" title="Permalink to this heading">#</a></h3>
+<p>Si la clave no existe, <code class="docutils literal notranslate"><span class="pre">dic[clave]</span></code> produce error.
+<code class="docutils literal notranslate"><span class="pre">get()</span></code> evita ese error devolviendo <code class="docutils literal notranslate"><span class="pre">None</span></code> o un valor por defecto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persona</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;altura&quot;</span><span class="p">),</span> <span class="n">persona</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;altura&quot;</span><span class="p">,</span> <span class="s2">&quot;No disponible&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="agregar-y-modificar-elementos">
+<h2>9.3 Agregar y modificar elementos<a class="headerlink" href="#agregar-y-modificar-elementos" title="Permalink to this heading">#</a></h2>
+<p>Los diccionarios son mutables, por lo que podemos agregar o modificar valores fácilmente.</p>
+<section id="agregar-clavevalor">
+<h3>Agregar clave–valor<a class="headerlink" href="#agregar-clavevalor" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;nueva_clave&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">valor</span>
+</pre></div>
+</div>
+</section>
+<section id="modificar-clave-existente">
+<h3>Modificar clave existente<a class="headerlink" href="#modificar-clave-existente" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dic</span><span class="p">[</span><span class="s2">&quot;clave&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nuevo_valor</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persona</span><span class="p">[</span><span class="s2">&quot;altura&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.80</span>
+<span class="n">persona</span><span class="p">[</span><span class="s2">&quot;edad&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">persona</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="eliminar-elementos">
+<h2>9.4 Eliminar elementos<a class="headerlink" href="#eliminar-elementos" title="Permalink to this heading">#</a></h2>
+<p>Python ofrece varias formas de eliminar elementos.</p>
+<section id="del-dic-clave">
+<h3><code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">dic[clave]</span></code><a class="headerlink" href="#del-dic-clave" title="Permalink to this heading">#</a></h3>
+<p>Elimina una clave específica.</p>
+</section>
+<section id="pop-clave">
+<h3><code class="docutils literal notranslate"><span class="pre">pop(clave)</span></code><a class="headerlink" href="#pop-clave" title="Permalink to this heading">#</a></h3>
+<p>Elimina y devuelve el valor.</p>
+</section>
+<section id="clear">
+<h3><code class="docutils literal notranslate"><span class="pre">clear()</span></code><a class="headerlink" href="#clear" title="Permalink to this heading">#</a></h3>
+<p>Vacía el diccionario.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persona</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Jon&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">39</span><span class="p">,</span> <span class="s2">&quot;pais&quot;</span><span class="p">:</span> <span class="s2">&quot;Argentina&quot;</span><span class="p">}</span>
+<span class="n">valor</span> <span class="o">=</span> <span class="n">persona</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;pais&quot;</span><span class="p">)</span>
+<span class="n">valor</span><span class="p">,</span> <span class="n">persona</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="recorrer-diccionarios">
+<h2>9.5 Recorrer diccionarios<a class="headerlink" href="#recorrer-diccionarios" title="Permalink to this heading">#</a></h2>
+<p>Podemos recorrer:</p>
+<ul class="simple">
+<li><p>Solo claves</p></li>
+<li><p>Solo valores</p></li>
+<li><p>Claves y valores</p></li>
+</ul>
+<section id="recorrer-claves-por-defecto">
+<h3>Recorrer claves (por defecto)<a class="headerlink" href="#recorrer-claves-por-defecto" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">clave</span> <span class="ow">in</span> <span class="n">persona</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">clave</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recorrer-valores">
+<h3>Recorrer valores<a class="headerlink" href="#recorrer-valores" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">persona</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recorrer-claves-y-valores">
+<h3>Recorrer claves y valores<a class="headerlink" href="#recorrer-claves-y-valores" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">clave</span><span class="p">,</span> <span class="n">valor</span> <span class="ow">in</span> <span class="n">persona</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">clave</span><span class="p">,</span> <span class="s2">&quot;=&quot;</span><span class="p">,</span> <span class="n">valor</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="metodos-utiles-de-diccionarios">
+<h2>9.6 Métodos útiles de diccionarios<a class="headerlink" href="#metodos-utiles-de-diccionarios" title="Permalink to this heading">#</a></h2>
+<p>Los diccionarios tienen métodos muy potentes.</p>
+<section id="keys">
+<h3><code class="docutils literal notranslate"><span class="pre">keys()</span></code><a class="headerlink" href="#keys" title="Permalink to this heading">#</a></h3>
+<p>Devuelve todas las claves.</p>
+</section>
+<section id="values">
+<h3><code class="docutils literal notranslate"><span class="pre">values()</span></code><a class="headerlink" href="#values" title="Permalink to this heading">#</a></h3>
+<p>Devuelve todos los valores.</p>
+</section>
+<section id="items">
+<h3><code class="docutils literal notranslate"><span class="pre">items()</span></code><a class="headerlink" href="#items" title="Permalink to this heading">#</a></h3>
+<p>Devuelve pares clave–valor.</p>
+</section>
+<section id="update">
+<h3><code class="docutils literal notranslate"><span class="pre">update()</span></code><a class="headerlink" href="#update" title="Permalink to this heading">#</a></h3>
+<p>Actualiza el diccionario con otro diccionario.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">persona</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Buenos Aires&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">41</span><span class="p">})</span>
+<span class="n">persona</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="diccionarios-anidados">
+<h2>9.7 Diccionarios anidados<a class="headerlink" href="#diccionarios-anidados" title="Permalink to this heading">#</a></h2>
+<p>Un diccionario puede contener otros diccionarios.</p>
+<p>Esto es muy útil para representar estructuras complejas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">alumno</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cursos&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;Python&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+        <span class="s2">&quot;Bases de Datos&quot;</span><span class="p">:</span> <span class="mi">8</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">alumno</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">alumno</span><span class="p">[</span><span class="s2">&quot;cursos&quot;</span><span class="p">][</span><span class="s2">&quot;Python&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="uso-practico-en-ciencia-de-datos">
+<h2>9.8 Uso práctico en ciencia de datos<a class="headerlink" href="#uso-practico-en-ciencia-de-datos" title="Permalink to this heading">#</a></h2>
+<p>Los diccionarios son esenciales en ciencia de datos porque permiten:</p>
+<ul class="simple">
+<li><p>Representar registros</p></li>
+<li><p>Convertir datos a JSON</p></li>
+<li><p>Construir estructuras clave–valor</p></li>
+<li><p>Preparar datos para Pandas</p></li>
+<li><p>Mapear categorías</p></li>
+</ul>
+<p>Ejemplo: lista de diccionarios como dataset simple.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span> <span class="s2">&quot;nota&quot;</span><span class="p">:</span> <span class="mi">9</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;nota&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Mia&quot;</span><span class="p">,</span> <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">21</span><span class="p">,</span> <span class="s2">&quot;nota&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
+<span class="p">]</span>
+<span class="n">dataset</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">alumno</span><span class="p">[</span><span class="s2">&quot;nota&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">alumno</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="capitulo_08.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CAPÍTULO 8 — TUPLAS</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="capitulo_10.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-diccionario">9.1 ¿Qué es un diccionario?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-a-valores">9.2 Acceso a valores</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceso-seguro-con-get">Acceso seguro con <code class="docutils literal notranslate"><span class="pre">get()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-y-modificar-elementos">9.3 Agregar y modificar elementos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agregar-clavevalor">Agregar clave–valor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modificar-clave-existente">Modificar clave existente</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminar-elementos">9.4 Eliminar elementos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#del-dic-clave"><code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">dic[clave]</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pop-clave"><code class="docutils literal notranslate"><span class="pre">pop(clave)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clear"><code class="docutils literal notranslate"><span class="pre">clear()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-diccionarios">9.5 Recorrer diccionarios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-claves-por-defecto">Recorrer claves (por defecto)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-valores">Recorrer valores</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recorrer-claves-y-valores">Recorrer claves y valores</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodos-utiles-de-diccionarios">9.6 Métodos útiles de diccionarios</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keys"><code class="docutils literal notranslate"><span class="pre">keys()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#values"><code class="docutils literal notranslate"><span class="pre">values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#items"><code class="docutils literal notranslate"><span class="pre">items()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#update"><code class="docutils literal notranslate"><span class="pre">update()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios-anidados">9.7 Diccionarios anidados</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-practico-en-ciencia-de-datos">9.8 Uso práctico en ciencia de datos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ing. Jonatan Uran — Universidad Nacional del Oeste (UNO)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>© 2026 — Especialización en Ciencia de Datos — UNO</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

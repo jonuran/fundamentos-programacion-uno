@@ -1,0 +1,809 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>CAPÍTULO 24 — BUENAS PRÁCTICAS Y SIGUIENTES PASOS (VERSIÓN EXTENDIDA) &#8212; Fundamentos de Programación - Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'capitulo_24';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="CAPÍTULO 23 — ALGORITMOS CLÁSICOS (VERSIÓN EXTENDIDA)" href="capitulo_23.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Fundamentos de Programación - Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Fundamentos de Programación — UNO
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="capitulo_01.html">CAPÍTULO 1 — INTRODUCCIÓN A PYTHON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_02.html">CAPÍTULO 2 — TIPOS DE DATOS Y VARIABLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_03.html">CAPÍTULO 3 — OPERADORES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_04.html">CAPÍTULO 4 — ESTRUCTURAS CONDICIONALES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_05.html">CAPÍTULO 5 — BUCLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_06.html">CAPÍTULO 6 — CADENAS (STRINGS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_07.html">CAPÍTULO 7 — LISTAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_08.html">CAPÍTULO 8 — TUPLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_09.html">CAPÍTULO 9 — DICCIONARIOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_10.html">CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_11.html">CAPÍTULO 11 — FUNCIONES AVANZADAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_12.html">CAPÍTULO 12 — ARCHIVOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_13.html">CAPÍTULO 13 — EXCEPCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_14.html">CAPÍTULO 14 — PROGRAMACIÓN ORIENTADA A OBJETOS (POO) — VERSIÓN EXTENDIDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_15.html">CAPÍTULO 15 — MÓDULOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_16.html">CAPÍTULO 16 — DEPURACIÓN (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_17.html">CAPÍTULO 17 — ESTRUCTURAS CLÁSICAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_18.html">CAPÍTULO 18 — ÁRBOLES Y GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_19.html">CAPÍTULO 19 — ALGORITMOS EN GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_20.html">CAPÍTULO 20 — COMPLEJIDAD COMPUTACIONAL (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_21.html">CAPÍTULO 21 — NOTACIÓN BIG O (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_22.html">CAPÍTULO 22 — ANÁLISIS DE ALGORITMOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_23.html">CAPÍTULO 23 — ALGORITMOS CLÁSICOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CAPÍTULO 24 — BUENAS PRÁCTICAS Y SIGUIENTES PASOS (VERSIÓN EXTENDIDA)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jonuran/fundamentos-programacion-uno" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/capitulo_24.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>CAPÍTULO 24 — BUENAS PRÁCTICAS Y SIGUIENTES PASOS (VERSIÓN EXTENDIDA)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilo-de-codigo">24.1 Estilo de código</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-principales-de-pep-8">✔ Reglas principales de PEP 8</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nombres-descriptivos">1. Nombres descriptivos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#espacios-y-sangria">2. Espacios y sangría</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas-cortas">3. Líneas cortas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios-claros-y-utiles">4. Comentarios claros y útiles</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-limpio">5. Código limpio</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-buen-estilo">Ejemplo de buen estilo:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">24.2 Documentación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-documentacion">✔ Tipos de documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docstrings-pep-257">✔ Docstrings (PEP 257)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios-utiles">✔ Comentarios útiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas">24.3 Pruebas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-pruebas">✔ Tipos de pruebas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-hacer-pruebas">✔ ¿Por qué hacer pruebas?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-unitarias-con-assert-simple">✔ Pruebas unitarias con <code class="docutils literal notranslate"><span class="pre">assert</span></code> (simple)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-con-unittest-mas-profesional">✔ Pruebas con <code class="docutils literal notranslate"><span class="pre">unittest</span></code> (más profesional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siguientes-pasos">24.4 Siguientes pasos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-avanzada">✔ 1. Programación avanzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciencia-de-datos">✔ 2. Ciencia de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-web">✔ 3. Desarrollo web</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bases-de-datos">✔ 4. Bases de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-profesionales">✔ 5. Buenas prácticas profesionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-recomendados">✔ 6. Proyectos recomendados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mentalidad-de-crecimiento">✔ 7. Mentalidad de crecimiento</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="capitulo-24-buenas-practicas-y-siguientes-pasos-version-extendida">
+<h1>CAPÍTULO 24 — BUENAS PRÁCTICAS Y SIGUIENTES PASOS (VERSIÓN EXTENDIDA)<a class="headerlink" href="#capitulo-24-buenas-practicas-y-siguientes-pasos-version-extendida" title="Permalink to this heading">#</a></h1>
+<section id="especializacion-en-ciencia-de-datos-uno">
+<h2>Especialización en Ciencia de Datos — UNO<a class="headerlink" href="#especializacion-en-ciencia-de-datos-uno" title="Permalink to this heading">#</a></h2>
+<section id="docente-ing-jonatan-uran">
+<h3>Docente: Ing. Jonatan Uran<a class="headerlink" href="#docente-ing-jonatan-uran" title="Permalink to this heading">#</a></h3>
+<p>Este capítulo reúne las <strong>buenas prácticas fundamentales</strong> para escribir código profesional, mantenible y escalable. También presenta una guía clara sobre los <strong>siguientes pasos</strong> para continuar creciendo como programador y científico de datos.</p>
+<p>En este capítulo veremos:</p>
+<ul class="simple">
+<li><p>24.1 Estilo de código</p></li>
+<li><p>24.2 Documentación</p></li>
+<li><p>24.3 Pruebas</p></li>
+<li><p>24.4 Siguientes pasos</p></li>
+</ul>
+<p>Estas prácticas son esenciales para trabajar en equipos, desarrollar proyectos reales y escribir código de calidad.</p>
+</section>
+</section>
+<section id="estilo-de-codigo">
+<h2>24.1 Estilo de código<a class="headerlink" href="#estilo-de-codigo" title="Permalink to this heading">#</a></h2>
+<p>El estilo de código es fundamental para que el software sea <strong>legible</strong>, <strong>mantenible</strong> y <strong>profesional</strong>.</p>
+<p>Python tiene una guía oficial de estilo llamada <strong>PEP 8</strong>.</p>
+<section id="reglas-principales-de-pep-8">
+<h3>✔ Reglas principales de PEP 8<a class="headerlink" href="#reglas-principales-de-pep-8" title="Permalink to this heading">#</a></h3>
+<section id="nombres-descriptivos">
+<h4>1. Nombres descriptivos<a class="headerlink" href="#nombres-descriptivos" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Variables: <code class="docutils literal notranslate"><span class="pre">total_ventas</span></code>, <code class="docutils literal notranslate"><span class="pre">contador</span></code></p></li>
+<li><p>Funciones: <code class="docutils literal notranslate"><span class="pre">calcular_promedio()</span></code></p></li>
+<li><p>Clases: <code class="docutils literal notranslate"><span class="pre">ClientePremium</span></code></p></li>
+</ul>
+</section>
+<section id="espacios-y-sangria">
+<h4>2. Espacios y sangría<a class="headerlink" href="#espacios-y-sangria" title="Permalink to this heading">#</a></h4>
+<ul>
+<li><p>Usar <strong>4 espacios</strong> por nivel de indentación</p></li>
+<li><p>Espacios alrededor de operadores:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="lineas-cortas">
+<h4>3. Líneas cortas<a class="headerlink" href="#lineas-cortas" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Máximo recomendado: <strong>79 caracteres</strong></p></li>
+</ul>
+</section>
+<section id="comentarios-claros-y-utiles">
+<h4>4. Comentarios claros y útiles<a class="headerlink" href="#comentarios-claros-y-utiles" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>No describir lo obvio</p></li>
+<li><p>Explicar <em>por qué</em>, no <em>qué</em></p></li>
+</ul>
+</section>
+<section id="codigo-limpio">
+<h4>5. Código limpio<a class="headerlink" href="#codigo-limpio" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Evitar duplicación</p></li>
+<li><p>Evitar funciones demasiado largas</p></li>
+<li><p>Evitar nombres crípticos</p></li>
+</ul>
+</section>
+</section>
+<section id="ejemplo-de-buen-estilo">
+<h3>Ejemplo de buen estilo:<a class="headerlink" href="#ejemplo-de-buen-estilo" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calcular_promedio</span><span class="p">(</span><span class="n">numeros</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Devuelve el promedio de una lista de números.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">numeros</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numeros</span><span class="p">)</span>
+
+<span class="n">calcular_promedio</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Seguir un estilo consistente mejora la calidad del código y facilita el trabajo en equipo.</p>
+</section>
+</section>
+<section id="documentacion">
+<h2>24.2 Documentación<a class="headerlink" href="#documentacion" title="Permalink to this heading">#</a></h2>
+<p>La documentación es esencial para que otros (y vos mismo en el futuro) puedan entender el código.</p>
+<section id="tipos-de-documentacion">
+<h3>✔ Tipos de documentación<a class="headerlink" href="#tipos-de-documentacion" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Docstrings</strong> → dentro del código</p></li>
+<li><p><strong>Comentarios</strong> → aclaraciones puntuales</p></li>
+<li><p><strong>README</strong> → descripción general del proyecto</p></li>
+<li><p><strong>Manual de usuario</strong> → instrucciones de uso</p></li>
+<li><p><strong>Documentación técnica</strong> → arquitectura, decisiones, APIs</p></li>
+</ul>
+</section>
+<section id="docstrings-pep-257">
+<h3>✔ Docstrings (PEP 257)<a class="headerlink" href="#docstrings-pep-257" title="Permalink to this heading">#</a></h3>
+<p>Ejemplo recomendado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">convertir_celsius_a_fahrenheit</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convierte grados Celsius a Fahrenheit.</span>
+
+<span class="sd">    Parámetros:</span>
+<span class="sd">        c (float): temperatura en Celsius.</span>
+
+<span class="sd">    Retorna:</span>
+<span class="sd">        float: temperatura en Fahrenheit.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
+
+<span class="n">convertir_celsius_a_fahrenheit</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comentarios-utiles">
+<h3>✔ Comentarios útiles<a class="headerlink" href="#comentarios-utiles" title="Permalink to this heading">#</a></h3>
+<p>Los comentarios deben explicar <strong>intención</strong>, no repetir el código.</p>
+<p>Ejemplo incorrecto:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># sumo 1</span>
+</pre></div>
+</div>
+<p>Ejemplo correcto:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># avanzo al siguiente índice</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="pruebas">
+<h2>24.3 Pruebas<a class="headerlink" href="#pruebas" title="Permalink to this heading">#</a></h2>
+<p>Las pruebas (tests) permiten verificar que el código funciona correctamente.</p>
+<section id="tipos-de-pruebas">
+<h3>✔ Tipos de pruebas<a class="headerlink" href="#tipos-de-pruebas" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Pruebas unitarias</strong> → prueban funciones individuales</p></li>
+<li><p><strong>Pruebas de integración</strong> → prueban módulos completos</p></li>
+<li><p><strong>Pruebas funcionales</strong> → prueban el sistema desde el punto de vista del usuario</p></li>
+</ul>
+</section>
+<section id="por-que-hacer-pruebas">
+<h3>✔ ¿Por qué hacer pruebas?<a class="headerlink" href="#por-que-hacer-pruebas" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Detectan errores temprano</p></li>
+<li><p>Evitan regresiones</p></li>
+<li><p>Mejoran la confianza en el código</p></li>
+<li><p>Facilitan refactorizaciones</p></li>
+</ul>
+</section>
+<section id="pruebas-unitarias-con-assert-simple">
+<h3>✔ Pruebas unitarias con <code class="docutils literal notranslate"><span class="pre">assert</span></code> (simple)<a class="headerlink" href="#pruebas-unitarias-con-assert-simple" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sumar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="k">assert</span> <span class="n">sumar</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="k">assert</span> <span class="n">sumar</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="s2">&quot;Pruebas completadas&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pruebas-con-unittest-mas-profesional">
+<h3>✔ Pruebas con <code class="docutils literal notranslate"><span class="pre">unittest</span></code> (más profesional)<a class="headerlink" href="#pruebas-con-unittest-mas-profesional" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestFunciones</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_sumar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sumar</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sumar</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">argv</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="n">exit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Las pruebas son una parte esencial del desarrollo profesional.</p>
+</section>
+</section>
+<section id="siguientes-pasos">
+<h2>24.4 Siguientes pasos<a class="headerlink" href="#siguientes-pasos" title="Permalink to this heading">#</a></h2>
+<p>Este curso te dio una base sólida en programación y estructuras de datos. A partir de acá, podés avanzar hacia áreas más especializadas.</p>
+<section id="programacion-avanzada">
+<h3>✔ 1. Programación avanzada<a class="headerlink" href="#programacion-avanzada" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Programación funcional</p></li>
+<li><p>Decoradores</p></li>
+<li><p>Generadores</p></li>
+<li><p>Concurrencia y paralelismo</p></li>
+</ul>
+</section>
+<section id="ciencia-de-datos">
+<h3>✔ 2. Ciencia de datos<a class="headerlink" href="#ciencia-de-datos" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Numpy</p></li>
+<li><p>Pandas</p></li>
+<li><p>Matplotlib / Seaborn</p></li>
+<li><p>Scikit-learn</p></li>
+<li><p>Machine Learning supervisado y no supervisado</p></li>
+</ul>
+</section>
+<section id="desarrollo-web">
+<h3>✔ 3. Desarrollo web<a class="headerlink" href="#desarrollo-web" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Flask</p></li>
+<li><p>Django</p></li>
+<li><p>APIs REST</p></li>
+</ul>
+</section>
+<section id="bases-de-datos">
+<h3>✔ 4. Bases de datos<a class="headerlink" href="#bases-de-datos" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>SQL</p></li>
+<li><p>PostgreSQL / MySQL</p></li>
+<li><p>MongoDB</p></li>
+</ul>
+</section>
+<section id="buenas-practicas-profesionales">
+<h3>✔ 5. Buenas prácticas profesionales<a class="headerlink" href="#buenas-practicas-profesionales" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Git y GitHub</p></li>
+<li><p>Testing avanzado</p></li>
+<li><p>CI/CD</p></li>
+<li><p>Documentación profesional</p></li>
+</ul>
+</section>
+<section id="proyectos-recomendados">
+<h3>✔ 6. Proyectos recomendados<a class="headerlink" href="#proyectos-recomendados" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>CRUD con base de datos</p></li>
+<li><p>API REST</p></li>
+<li><p>Dashboard de análisis de datos</p></li>
+<li><p>Modelo de machine learning</p></li>
+<li><p>Web scraping + análisis</p></li>
+</ul>
+</section>
+<section id="mentalidad-de-crecimiento">
+<h3>✔ 7. Mentalidad de crecimiento<a class="headerlink" href="#mentalidad-de-crecimiento" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Practicar todos los días</p></li>
+<li><p>Leer código de otros</p></li>
+<li><p>Participar en proyectos reales</p></li>
+<li><p>Enseñar lo aprendido (la mejor forma de aprender)</p></li>
+</ul>
+<hr class="docutils" />
+<p>Este capítulo cierra el curso con una visión profesional sobre cómo escribir código de calidad y cómo seguir creciendo como programador y científico de datos.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="capitulo_23.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CAPÍTULO 23 — ALGORITMOS CLÁSICOS (VERSIÓN EXTENDIDA)</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estilo-de-codigo">24.1 Estilo de código</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reglas-principales-de-pep-8">✔ Reglas principales de PEP 8</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nombres-descriptivos">1. Nombres descriptivos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#espacios-y-sangria">2. Espacios y sangría</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lineas-cortas">3. Líneas cortas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios-claros-y-utiles">4. Comentarios claros y útiles</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-limpio">5. Código limpio</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-buen-estilo">Ejemplo de buen estilo:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentacion">24.2 Documentación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-documentacion">✔ Tipos de documentación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docstrings-pep-257">✔ Docstrings (PEP 257)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comentarios-utiles">✔ Comentarios útiles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas">24.3 Pruebas</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-pruebas">✔ Tipos de pruebas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-hacer-pruebas">✔ ¿Por qué hacer pruebas?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-unitarias-con-assert-simple">✔ Pruebas unitarias con <code class="docutils literal notranslate"><span class="pre">assert</span></code> (simple)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pruebas-con-unittest-mas-profesional">✔ Pruebas con <code class="docutils literal notranslate"><span class="pre">unittest</span></code> (más profesional)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#siguientes-pasos">24.4 Siguientes pasos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#programacion-avanzada">✔ 1. Programación avanzada</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ciencia-de-datos">✔ 2. Ciencia de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#desarrollo-web">✔ 3. Desarrollo web</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bases-de-datos">✔ 4. Bases de datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#buenas-practicas-profesionales">✔ 5. Buenas prácticas profesionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proyectos-recomendados">✔ 6. Proyectos recomendados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mentalidad-de-crecimiento">✔ 7. Mentalidad de crecimiento</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ing. Jonatan Uran — Universidad Nacional del Oeste (UNO)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>© 2026 — Especialización en Ciencia de Datos — UNO</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

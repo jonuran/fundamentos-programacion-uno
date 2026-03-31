@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>CAPÍTULO 22 — ANÁLISIS DE ALGORITMOS (VERSIÓN EXTENDIDA) &#8212; Fundamentos de Programación - Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'capitulo_22';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CAPÍTULO 23 — ALGORITMOS CLÁSICOS (VERSIÓN EXTENDIDA)" href="capitulo_23.html" />
+    <link rel="prev" title="CAPÍTULO 21 — NOTACIÓN BIG O (VERSIÓN EXTENDIDA)" href="capitulo_21.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Fundamentos de Programación - Python</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Fundamentos de Programación — UNO
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="capitulo_01.html">CAPÍTULO 1 — INTRODUCCIÓN A PYTHON</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_02.html">CAPÍTULO 2 — TIPOS DE DATOS Y VARIABLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_03.html">CAPÍTULO 3 — OPERADORES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_04.html">CAPÍTULO 4 — ESTRUCTURAS CONDICIONALES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_05.html">CAPÍTULO 5 — BUCLES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_06.html">CAPÍTULO 6 — CADENAS (STRINGS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_07.html">CAPÍTULO 7 — LISTAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_08.html">CAPÍTULO 8 — TUPLAS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_09.html">CAPÍTULO 9 — DICCIONARIOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_10.html">CAPÍTULO 10 — FUNCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_11.html">CAPÍTULO 11 — FUNCIONES AVANZADAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_12.html">CAPÍTULO 12 — ARCHIVOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_13.html">CAPÍTULO 13 — EXCEPCIONES (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_14.html">CAPÍTULO 14 — PROGRAMACIÓN ORIENTADA A OBJETOS (POO) — VERSIÓN EXTENDIDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_15.html">CAPÍTULO 15 — MÓDULOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_16.html">CAPÍTULO 16 — DEPURACIÓN (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_17.html">CAPÍTULO 17 — ESTRUCTURAS CLÁSICAS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_18.html">CAPÍTULO 18 — ÁRBOLES Y GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_19.html">CAPÍTULO 19 — ALGORITMOS EN GRAFOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_20.html">CAPÍTULO 20 — COMPLEJIDAD COMPUTACIONAL (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_21.html">CAPÍTULO 21 — NOTACIÓN BIG O (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CAPÍTULO 22 — ANÁLISIS DE ALGORITMOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_23.html">CAPÍTULO 23 — ALGORITMOS CLÁSICOS (VERSIÓN EXTENDIDA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="capitulo_24.html">CAPÍTULO 24 — BUENAS PRÁCTICAS Y SIGUIENTES PASOS (VERSIÓN EXTENDIDA)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jonuran/fundamentos-programacion-uno" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/capitulo_22.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>CAPÍTULO 22 — ANÁLISIS DE ALGORITMOS (VERSIÓN EXTENDIDA)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-la-suma">22.1 Regla de la suma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-f-n-g-n">✔ O(f(n) + g(n))</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1">Ejemplo 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-diferentes-tamanos">Ejemplo 2: diferentes tamaños</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-practico-en-python">Ejemplo práctico en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-la-multiplicacion">22.2 Regla de la multiplicación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">✔ O(f(n) × g(n))</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-doble-bucle">Ejemplo 1: doble bucle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-bucles-de-distinto-tamano">Ejemplo 2: bucles de distinto tamaño</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplo práctico en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-algoritmos">22.3 Comparación de algoritmos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-eficiencia-de-mejor-a-peor">Orden de eficiencia (de mejor a peor)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-comparativo">Ejemplo comparativo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-practico-comparacion-de-tiempos">Ejemplo práctico: comparación de tiempos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion">22.4 Optimización</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategias-comunes">Estrategias comunes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-trabajo-innecesario">✔ 1. Evitar trabajo innecesario</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-estructuras-de-datos-eficientes">✔ 2. Usar estructuras de datos eficientes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reducir-bucles-anidados">✔ 3. Reducir bucles anidados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-algoritmos-mas-eficientes">✔ 4. Usar algoritmos más eficientes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#memoizacion">✔ 5. Memoización</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-optimizacion-fibonacci">Ejemplo de optimización: Fibonacci</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="capitulo-22-analisis-de-algoritmos-version-extendida">
+<h1>CAPÍTULO 22 — ANÁLISIS DE ALGORITMOS (VERSIÓN EXTENDIDA)<a class="headerlink" href="#capitulo-22-analisis-de-algoritmos-version-extendida" title="Permalink to this heading">#</a></h1>
+<section id="especializacion-en-ciencia-de-datos-uno">
+<h2>Especialización en Ciencia de Datos — UNO<a class="headerlink" href="#especializacion-en-ciencia-de-datos-uno" title="Permalink to this heading">#</a></h2>
+<section id="docente-ing-jonatan-uran">
+<h3>Docente: Ing. Jonatan Uran<a class="headerlink" href="#docente-ing-jonatan-uran" title="Permalink to this heading">#</a></h3>
+<p>El análisis de algoritmos es una disciplina que permite evaluar la eficiencia de un algoritmo antes de implementarlo o ejecutarlo. Se basa en principios matemáticos que permiten estimar el tiempo y el espacio que un algoritmo necesita.</p>
+<p>En este capítulo veremos:</p>
+<ul class="simple">
+<li><p>22.1 Regla de la suma</p></li>
+<li><p>22.2 Regla de la multiplicación</p></li>
+<li><p>22.3 Comparación de algoritmos</p></li>
+<li><p>22.4 Optimización</p></li>
+</ul>
+<p>Estas reglas son fundamentales para comprender cómo se combinan las complejidades y cómo analizar algoritmos más complejos.</p>
+</section>
+</section>
+<section id="regla-de-la-suma">
+<h2>22.1 Regla de la suma<a class="headerlink" href="#regla-de-la-suma" title="Permalink to this heading">#</a></h2>
+<p>La <strong>regla de la suma</strong> se aplica cuando un algoritmo realiza <strong>dos tareas consecutivas</strong>, una después de la otra.</p>
+<p>Si un algoritmo realiza:</p>
+<ul class="simple">
+<li><p>una operación de complejidad <strong>O(f(n))</strong>, y luego</p></li>
+<li><p>otra operación de complejidad <strong>O(g(n))</strong>,</p></li>
+</ul>
+<p>entonces la complejidad total es:</p>
+<section id="o-f-n-g-n">
+<h3>✔ O(f(n) + g(n))<a class="headerlink" href="#o-f-n-g-n" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="ejemplo-1">
+<h3>Ejemplo 1<a class="headerlink" href="#ejemplo-1" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>      <span class="c1"># O(n)</span>
+    <span class="o">...</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>      <span class="c1"># O(n)</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Complejidad total:</p>
+<p>→ O(n + n) = <strong>O(n)</strong></p>
+</section>
+<section id="ejemplo-2-diferentes-tamanos">
+<h3>Ejemplo 2: diferentes tamaños<a class="headerlink" href="#ejemplo-2-diferentes-tamanos" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>      <span class="c1"># O(n)</span>
+    <span class="o">...</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">):</span>    <span class="c1"># O(n²)</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Complejidad total:</p>
+<p>→ O(n + n²) = <strong>O(n²)</strong> (domina el término mayor)</p>
+</section>
+<section id="ejemplo-practico-en-python">
+<h3>Ejemplo práctico en Python<a class="headerlink" href="#ejemplo-practico-en-python" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">regla_suma</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">pass</span>  <span class="c1"># O(n)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">pass</span>  <span class="c1"># O(n²)</span>
+    <span class="k">return</span> <span class="s2">&quot;Completado&quot;</span>
+
+<span class="n">regla_suma</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La regla de la suma nos permite analizar algoritmos compuestos por partes independientes.</p>
+</section>
+</section>
+<section id="regla-de-la-multiplicacion">
+<h2>22.2 Regla de la multiplicación<a class="headerlink" href="#regla-de-la-multiplicacion" title="Permalink to this heading">#</a></h2>
+<p>La <strong>regla de la multiplicación</strong> se aplica cuando un algoritmo realiza una tarea <strong>dentro de otra</strong>.</p>
+<p>Si un algoritmo realiza:</p>
+<ul class="simple">
+<li><p>una operación de complejidad <strong>O(f(n))</strong>, y dentro de ella</p></li>
+<li><p>otra operación de complejidad <strong>O(g(n))</strong>,</p></li>
+</ul>
+<p>entonces la complejidad total es:</p>
+<section id="id1">
+<h3>✔ O(f(n) × g(n))<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="ejemplo-1-doble-bucle">
+<h3>Ejemplo 1: doble bucle<a class="headerlink" href="#ejemplo-1-doble-bucle" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>      <span class="c1"># O(n)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># O(n)</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>Complejidad total:</p>
+<p>→ O(n × n) = <strong>O(n²)</strong></p>
+</section>
+<section id="ejemplo-2-bucles-de-distinto-tamano">
+<h3>Ejemplo 2: bucles de distinto tamaño<a class="headerlink" href="#ejemplo-2-bucles-de-distinto-tamano" title="Permalink to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>      <span class="c1"># O(n)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># O(n²)</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>Complejidad total:</p>
+<p>→ O(n × n²) = <strong>O(n³)</strong></p>
+</section>
+<section id="id2">
+<h3>Ejemplo práctico en Python<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">regla_multiplicacion</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">pass</span>  <span class="c1"># O(n²)</span>
+    <span class="k">return</span> <span class="s2">&quot;Completado&quot;</span>
+
+<span class="n">regla_multiplicacion</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La regla de la multiplicación es clave para analizar algoritmos con bucles anidados o estructuras jerárquicas.</p>
+</section>
+</section>
+<section id="comparacion-de-algoritmos">
+<h2>22.3 Comparación de algoritmos<a class="headerlink" href="#comparacion-de-algoritmos" title="Permalink to this heading">#</a></h2>
+<p>Para elegir el mejor algoritmo, debemos comparar sus complejidades.</p>
+<section id="orden-de-eficiencia-de-mejor-a-peor">
+<h3>Orden de eficiencia (de mejor a peor)<a class="headerlink" href="#orden-de-eficiencia-de-mejor-a-peor" title="Permalink to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>O(1)
+O(log n)
+O(n)
+O(n log n)
+O(n²)
+O(2ⁿ)
+O(n!)
+</pre></div>
+</div>
+</section>
+<section id="ejemplo-comparativo">
+<h3>Ejemplo comparativo<a class="headerlink" href="#ejemplo-comparativo" title="Permalink to this heading">#</a></h3>
+<p>Supongamos que queremos buscar un elemento en una lista:</p>
+<ul class="simple">
+<li><p><strong>Búsqueda lineal</strong> → O(n)</p></li>
+<li><p><strong>Búsqueda binaria</strong> → O(log n)</p></li>
+</ul>
+<p>Claramente, la búsqueda binaria es mucho más eficiente.</p>
+</section>
+<section id="ejemplo-practico-comparacion-de-tiempos">
+<h3>Ejemplo práctico: comparación de tiempos<a class="headerlink" href="#ejemplo-practico-comparacion-de-tiempos" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">busqueda_lineal</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">objetivo</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lista</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">objetivo</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">busqueda_binaria</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="n">objetivo</span><span class="p">):</span>
+    <span class="n">izq</span><span class="p">,</span> <span class="n">der</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">lista</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">izq</span> <span class="o">&lt;=</span> <span class="n">der</span><span class="p">:</span>
+        <span class="n">medio</span> <span class="o">=</span> <span class="p">(</span><span class="n">izq</span> <span class="o">+</span> <span class="n">der</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">lista</span><span class="p">[</span><span class="n">medio</span><span class="p">]</span> <span class="o">==</span> <span class="n">objetivo</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">medio</span>
+        <span class="k">elif</span> <span class="n">lista</span><span class="p">[</span><span class="n">medio</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">objetivo</span><span class="p">:</span>
+            <span class="n">izq</span> <span class="o">=</span> <span class="n">medio</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">der</span> <span class="o">=</span> <span class="n">medio</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="n">lista</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">))</span>
+
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">busqueda_lineal</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="mi">999_999</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lineal:&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">inicio</span><span class="p">)</span>
+
+<span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">busqueda_binaria</span><span class="p">(</span><span class="n">lista</span><span class="p">,</span> <span class="mi">999_999</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Binaria:&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">inicio</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La diferencia de rendimiento es enorme, especialmente para valores grandes de <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<p>Comparar algoritmos es esencial para elegir la solución más eficiente.</p>
+</section>
+</section>
+<section id="optimizacion">
+<h2>22.4 Optimización<a class="headerlink" href="#optimizacion" title="Permalink to this heading">#</a></h2>
+<p>La optimización consiste en mejorar el rendimiento de un algoritmo.</p>
+<section id="estrategias-comunes">
+<h3>Estrategias comunes<a class="headerlink" href="#estrategias-comunes" title="Permalink to this heading">#</a></h3>
+<section id="evitar-trabajo-innecesario">
+<h4>✔ 1. Evitar trabajo innecesario<a class="headerlink" href="#evitar-trabajo-innecesario" title="Permalink to this heading">#</a></h4>
+<p>Ejemplo: cortar un bucle cuando ya encontramos lo que buscamos.</p>
+</section>
+<section id="usar-estructuras-de-datos-eficientes">
+<h4>✔ 2. Usar estructuras de datos eficientes<a class="headerlink" href="#usar-estructuras-de-datos-eficientes" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>listas → O(n)</p></li>
+<li><p>diccionarios → O(1)</p></li>
+<li><p>heaps → O(log n)</p></li>
+</ul>
+</section>
+<section id="reducir-bucles-anidados">
+<h4>✔ 3. Reducir bucles anidados<a class="headerlink" href="#reducir-bucles-anidados" title="Permalink to this heading">#</a></h4>
+<p>Pasar de O(n²) a O(n log n) o O(n).</p>
+</section>
+<section id="usar-algoritmos-mas-eficientes">
+<h4>✔ 4. Usar algoritmos más eficientes<a class="headerlink" href="#usar-algoritmos-mas-eficientes" title="Permalink to this heading">#</a></h4>
+<p>Ejemplo: reemplazar Bubble Sort (O(n²)) por MergeSort (O(n log n)).</p>
+</section>
+<section id="memoizacion">
+<h4>✔ 5. Memoización<a class="headerlink" href="#memoizacion" title="Permalink to this heading">#</a></h4>
+<p>Guardar resultados ya calculados.</p>
+</section>
+</section>
+<section id="ejemplo-de-optimizacion-fibonacci">
+<h3>Ejemplo de optimización: Fibonacci<a class="headerlink" href="#ejemplo-de-optimizacion-fibonacci" title="Permalink to this heading">#</a></h3>
+<p>Versión lenta (O(2ⁿ)):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fib_lento</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">fib_lento</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib_lento</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fib_lento</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Versión optimizada con memoización (O(n)):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">memo</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fib_rapido</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">memo</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    <span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">fib_rapido</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib_rapido</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+
+<span class="n">fib_rapido</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La optimización puede transformar un algoritmo inutilizable en uno eficiente.</p>
+<hr class="docutils" />
+<p>Este capítulo completa la base teórica para analizar y comparar algoritmos de forma profesional.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="capitulo_21.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">CAPÍTULO 21 — NOTACIÓN BIG O (VERSIÓN EXTENDIDA)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="capitulo_23.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">CAPÍTULO 23 — ALGORITMOS CLÁSICOS (VERSIÓN EXTENDIDA)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#especializacion-en-ciencia-de-datos-uno">Especialización en Ciencia de Datos — UNO</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docente-ing-jonatan-uran">Docente: Ing. Jonatan Uran</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-la-suma">22.1 Regla de la suma</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-f-n-g-n">✔ O(f(n) + g(n))</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1">Ejemplo 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-diferentes-tamanos">Ejemplo 2: diferentes tamaños</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-practico-en-python">Ejemplo práctico en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regla-de-la-multiplicacion">22.2 Regla de la multiplicación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">✔ O(f(n) × g(n))</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-1-doble-bucle">Ejemplo 1: doble bucle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-2-bucles-de-distinto-tamano">Ejemplo 2: bucles de distinto tamaño</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Ejemplo práctico en Python</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-algoritmos">22.3 Comparación de algoritmos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orden-de-eficiencia-de-mejor-a-peor">Orden de eficiencia (de mejor a peor)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-comparativo">Ejemplo comparativo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-practico-comparacion-de-tiempos">Ejemplo práctico: comparación de tiempos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizacion">22.4 Optimización</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estrategias-comunes">Estrategias comunes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evitar-trabajo-innecesario">✔ 1. Evitar trabajo innecesario</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-estructuras-de-datos-eficientes">✔ 2. Usar estructuras de datos eficientes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reducir-bucles-anidados">✔ 3. Reducir bucles anidados</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#usar-algoritmos-mas-eficientes">✔ 4. Usar algoritmos más eficientes</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#memoizacion">✔ 5. Memoización</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-optimizacion-fibonacci">Ejemplo de optimización: Fibonacci</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ing. Jonatan Uran — Universidad Nacional del Oeste (UNO)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>© 2026 — Especialización en Ciencia de Datos — UNO</p>
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
